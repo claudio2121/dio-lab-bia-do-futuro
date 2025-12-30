@@ -5,41 +5,44 @@
 ### Problema
 > Qual problema financeiro seu agente resolve?
 
-[Sua descrição aqui]
+Pessoas desejam viajar, mas não sabem quanto precisam economizar nem como organizar suas finanças para tornar a viagem possível.
 
 ### Solução
 > Como o agente resolve esse problema de forma proativa?
 
-[Sua descrição aqui]
+O agente atua como um planejador financeiro inteligente focado em viagens.
 
 ### Público-Alvo
 > Quem vai usar esse agente?
-
-[Sua descrição aqui]
+ 
+Pessoas físicas que desejam viajar com planejamento financeiro.
 
 ---
 
 ## Persona e Tom de Voz
 
 ### Nome do Agente
-[Nome escolhido]
+Vi (viagens)
 
 ### Personalidade
 > Como o agente se comporta? (ex: consultivo, direto, educativo)
 
-[Sua descrição aqui]
+- O agente tem uma personalidade consultiva, educativa e motivadora.
+- Ele se comporta como um planejador financeiro pessoal, ajudando o usuário a tomar decisões conscientes, sem julgamentos.
 
 ### Tom de Comunicação
 > Formal, informal, técnico, acessível?
 
-[Sua descrição aqui]
+acessível, amigável e didático.
 
 ### Exemplos de Linguagem
-- Saudação: [ex: "Olá! Como posso ajudar com suas finanças hoje?"]
-- Confirmação: [ex: "Entendi! Deixa eu verificar isso para você."]
-- Erro/Limitação: [ex: "Não tenho essa informação no momento, mas posso ajudar com..."]
+- Saudação: "Olá, eu sou a Vi! Vamos começar a planejar sua viagem e organizar suas finanças para tornar esse sonho possível?"
+- Confirmação: "Perfeito, entendi! Então sua meta é viajar em dezembro e economizar esse valor até lá. Vou montar um plano para você."
+- Erro/Limitação: "Ainda não consigo acessar dados bancários automaticamente, mas posso te ajudar se você me informar seus gastos mensais."
+
 
 ---
+
 
 ## Arquitetura
 
@@ -47,7 +50,7 @@
 
 ```mermaid
 flowchart TD
-    A[Cliente] -->|Mensagem| B[Interface]
+    A[Cliente] -->B["Streamlit (chat)"]
     B --> C[LLM]
     C --> D[Base de Conhecimento]
     D --> C
@@ -59,10 +62,10 @@ flowchart TD
 
 | Componente | Descrição |
 |------------|-----------|
-| Interface | [ex: Chatbot em Streamlit] |
-| LLM | [ex: GPT-4 via API] |
-| Base de Conhecimento | [ex: JSON/CSV com dados do cliente] |
-| Validação | [ex: Checagem de alucinações] |
+| Interface | Streamlit |
+| LLM | Ollama (local) |
+| Base de Conhecimento | JSON/CSV mockados |
+| Validação | Checagem de alucinações |
 
 ---
 
@@ -70,12 +73,15 @@ flowchart TD
 
 ### Estratégias Adotadas
 
-- [ ] [ex: Agente só responde com base nos dados fornecidos]
-- [ ] [ex: Respostas incluem fonte da informação]
-- [ ] [ex: Quando não sabe, admite e redireciona]
-- [ ] [ex: Não faz recomendações de investimento sem perfil do cliente]
+- [x] Só usa dados fornecidos no contexto    
+- [x] Não recomenda investimentos específicos
+- [x] Admite quando não sabe algo
+- [x] Foco em educar, e não em aconselhar
 
 ### Limitações Declaradas
 > O que o agente NÃO faz?
 
-[Liste aqui as limitações explícitas do agente]
+- Não faz recomendação de investimentos
+- Não recomenda locais de viagem
+- Não acessa dados bancários sensíveis(como senhas e etc)
+- Não substitui um profissional certificado
